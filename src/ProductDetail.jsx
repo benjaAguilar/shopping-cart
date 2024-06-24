@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 
 function ProductDetail() {
   const { productId } = useParams();
   const [product, setProduct] = useState();
+  const [quantity, setQuantity] = useState(1);
   const stock = [];
+  const handleCart = useOutletContext();
 
   if (product) {
     for (let i = 1; i <= product.stock; i++) {
@@ -26,7 +28,11 @@ function ProductDetail() {
       <p>$ {product.price}</p>
       <div>
         <label htmlFor="quantity">Quantity</label>
-        <select name="quantity" id="quantity">
+        <select
+          name="quantity"
+          id="quantity"
+          onChange={(e) => setQuantity(e.target.value)}
+        >
           {stock.map((num) => {
             return (
               <option value={num} key={num} selected={num === 1 ? true : false}>
@@ -39,7 +45,9 @@ function ProductDetail() {
       </div>
       <p>{product.description}</p>
       <button>Buy Now</button>
-      <button>Add to cart</button>
+      <button onClick={() => handleCart({ ...product, quantity: quantity })}>
+        Add to cart
+      </button>
     </div>
   ) : (
     <h2>loading</h2>
