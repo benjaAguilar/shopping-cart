@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "./Home";
-import ErrorPage from "./ErrorPage";
-import ProductCategory from "./ProductCategory";
-import ProductDetail from "./ProductDetail";
-import Cart from "./Cart";
+import Home from "./components/home/Home";
+import ErrorPage from "./components/ErrorPage";
+import ProductCategory from "./components/home/ProductCategory";
+import ProductDetail from "./components/productDetail/ProductDetail";
+import Cart from "./components/cart/Cart";
 
 const router = createBrowserRouter([
   {

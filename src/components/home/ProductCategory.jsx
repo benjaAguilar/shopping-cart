@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import getData from "./getData";
-import ProductsCards from "./productsCards";
-import { product } from "./product";
+import getData from "../../getData";
+import ProductsCards from "../productCards/productsCards";
+import { product } from "../../product";
 
 function ProductCategory() {
   const navigate = useNavigate();

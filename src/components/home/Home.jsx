@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import getData from "./getData";
+import getData from "../../getData";
 import { Link, Outlet } from "react-router-dom";
 
 function Home() {
