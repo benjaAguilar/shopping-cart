@@ -37,15 +37,22 @@ function Home() {
   };
 
   function handleCart(product) {
-    if (productsCart) {
-      const isOnCart = productsCart.filter(
-        (productOnCart) => productOnCart.title === product.title
-      );
+    if (!productsCart) {
+      const prodStringed = JSON.stringify([product]);
 
-      if (isOnCart.length !== 0) {
-        alert("already in cart");
-        return;
-      }
+      localStorage.setItem("cart", prodStringed);
+      setProductsCart(JSON.parse(localStorage.getItem("cart")));
+
+      return;
+    }
+
+    const isOnCart = productsCart.filter(
+      (productOnCart) => productOnCart.title === product.title
+    );
+
+    if (isOnCart.length !== 0) {
+      alert("already in cart");
+      return;
     }
 
     const prodStringed = JSON.stringify([...productsCart, product]);
