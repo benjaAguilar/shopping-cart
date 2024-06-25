@@ -1,0 +1,100 @@
+.product{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.image{
+    width: 500px;
+}
+
+.details{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.quantity{
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btnBox{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+button{
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: #404040;
+    color: #e5e5e5;
+    font-weight: bold;
+    border: 3px solid #e5e5e5;
+    border: 3px solid #404040;
+    transition: transform 300ms ease;
+    width: 200px;
+}
+
+button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.addCart{
+    background-color: transparent;
+    color: #404040;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & span{
+        transition: transform 300ms;
+        position: absolute;
+    }
+}
+
+.animate{
+    animation: scrollText 300ms ease-in-out;
+}
+
+@keyframes scrollText {
+    from{
+        transform: translateY(0);
+    }
+
+    to{
+        transform: translateY(-100px);
+    }
+}
+
+.onCart{
+    bottom: -85px;
+}
+
+.price{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+@media (max-width: 600px){
+    .image{
+        width: 200px;
+    }
+    
+    .btnBox{
+        justify-content: center;
+    }
+
+    .product{
+        margin-left: 1rem;
+    }
+}

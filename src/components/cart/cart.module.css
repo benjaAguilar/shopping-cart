@@ -1,0 +1,41 @@
+.box{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem;
+
+    & h2{
+        font-size: 2rem;
+        align-self: flex-end;
+    }
+}
+
+.cardBox{
+    display: flex;  width: 800px;
+    flex-wrap: wrap;
+    border: 3px solid #404040;
+    border-radius: 0.5rem;
+    height: 500px;
+    overflow: scroll;
+    overflow-x: auto;
+    
+}
+
+.cardBox::-webkit-scrollbar {
+    display: none; /* Chrome, Safari y Opera */
+  }
+
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    width: 250px;
+    padding: 1rem;
+}
+
+.price{
+    font-size: 1.2rem;
+    font-weight: bold;
+}

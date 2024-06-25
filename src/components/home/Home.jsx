@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import getData from "../../getData";
 import { Link, Outlet } from "react-router-dom";
+import styles from "./home.module.css";
+import arrowIcon from "../../assets/arrow.svg";
+import cartIcon from "../../assets/cart.svg";
 
 function Home() {
   const [sections, setSections] = useState([]);
-  const [showSections, setShowSections] = useState(false);
+  const [showSections, setShowSections] = useState("none");
   const [productsCart, setProductsCart] = useState(
     JSON.parse(localStorage.getItem("cart"))
   );
@@ -26,7 +29,11 @@ function Home() {
   }, []);
 
   const toggleShowSections = () => {
-    setShowSections(!showSections);
+    if (showSections === "none") {
+      setShowSections("block");
+    } else {
+      setShowSections("none");
+    }
   };
 
   function handleCart(product) {
@@ -47,27 +54,32 @@ function Home() {
 
   return (
     <>
-      <header>
-        <button onClick={toggleShowSections}>Categories</button>
-        <input type="text" placeholder="Search Products" />
+      <header className={styles.header}>
+        <button className={styles.btn} onClick={toggleShowSections}>
+          Categories <img src={arrowIcon} alt="" />
+        </button>
         <h1>My Dummy Shop</h1>
         <div>
-          <Link to={"/cart"}>Cart</Link>
-          <div>{productsCart.length}</div>
+          <Link className={styles.cart} to={"/cart"}>
+            <img src={cartIcon} />
+          </Link>
         </div>
       </header>
       {sections.length > 0 ? (
         <>
-          <div
-            className="categories"
-            style={{ display: showSections ? "block" : "none" }}
-          >
+          <div className={styles.categories} style={{ display: showSections }}>
             <ul>
               {sections.map((section) => {
                 return (
-                  <Link key={section.slug} to={`/${section.slug}`}>
-                    {section.name}
-                  </Link>
+                  <li key={section.slug}>
+                    <Link
+                      className={styles.link}
+                      to={`/${section.slug}`}
+                      onClick={toggleShowSections}
+                    >
+                      {section.name}
+                    </Link>
+                  </li>
                 );
               })}
             </ul>

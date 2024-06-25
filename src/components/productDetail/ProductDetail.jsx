@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
+import styles from "./detail.module.css";
 
 function ProductDetail() {
   const { productId } = useParams();
   const [product, setProduct] = useState();
   const [quantity, setQuantity] = useState(1);
+  const [cartText, setCartText] = useState("Add to cart");
+  const [activeClass, setActiveClass] = useState(false);
   const stock = [];
   const handleCart = useOutletContext();
 
@@ -22,32 +25,64 @@ function ProductDetail() {
   }, [productId]);
 
   return product ? (
-    <div>
-      <img src={product.image} alt="" />
-      <h2>{product.title}</h2>
-      <p>$ {product.price}</p>
-      <div>
-        <label htmlFor="quantity">Quantity</label>
-        <select
-          name="quantity"
-          id="quantity"
-          onChange={(e) => setQuantity(e.target.value)}
-        >
-          {stock.map((num) => {
-            return (
-              <option value={num} key={num} selected={num === 1 ? true : false}>
-                {num}
-              </option>
-            );
-          })}
-        </select>
-        <i>(In stock: {product.stock})</i>
+    <div className={styles.product}>
+      <img className={styles.image} src={product.image} alt="" />
+      <div className={styles.details}>
+        <h2>{product.title}</h2>
+        <p>{product.description}</p>
+        <p className={styles.price}>$ {product.price}</p>
+        <div className={styles.quantity}>
+          <label htmlFor="quantity">Quantity</label>
+          <select
+            name="quantity"
+            id="quantity"
+            onChange={(e) => setQuantity(e.target.value)}
+          >
+            {stock.map((num) => {
+              return (
+                <option
+                  value={num}
+                  key={num}
+                  selected={num === 1 ? true : false}
+                >
+                  {num}
+                </option>
+              );
+            })}
+          </select>
+          <i>(In stock: {product.stock})</i>
+        </div>
+        <div className={styles.btnBox}>
+          <button
+            onClick={() => {
+              alert("this is a example btn, add to cart instead");
+            }}
+          >
+            Buy Now
+          </button>
+          <button
+            className={styles.addCart}
+            onClick={() => {
+              handleCart({ ...product, quantity: quantity });
+              setActiveClass(!activeClass);
+              setTimeout(() => {
+                setCartText("On Cart");
+              }, 299);
+            }}
+          >
+            <span className={activeClass ? styles.animate : ""}>
+              {cartText}
+            </span>
+            <span
+              className={`${styles.onCart} ${
+                activeClass ? styles.animate : ""
+              }`}
+            >
+              On Cart
+            </span>
+          </button>
+        </div>
       </div>
-      <p>{product.description}</p>
-      <button>Buy Now</button>
-      <button onClick={() => handleCart({ ...product, quantity: quantity })}>
-        Add to cart
-      </button>
     </div>
   ) : (
     <h2>loading</h2>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styles from "./cart.module.css";
 
 function Cart() {
   const [cartProducts, setCartProducts] = useState();
@@ -29,21 +30,23 @@ function Cart() {
   }
 
   return cartProducts ? (
-    <>
-      {cartProducts.map((product) => {
-        return (
-          <div key={product.title}>
-            <img src={product.image} alt="" />
-            <h3>{product.title}</h3>
-            <p>Quantity: {product.quantity}</p>
-            <p>{product.price * product.quantity}</p>
-            <button onClick={() => deleteItem(product.title)}>del</button>
-          </div>
-        );
-      })}
+    <div className={styles.box}>
+      <div className={styles.cardBox}>
+        {cartProducts.map((product) => {
+          return (
+            <div className={styles.card} key={product.title}>
+              <img src={product.image} alt="" />
+              <h3>{product.title}</h3>
+              <p>Quantity: {product.quantity}</p>
+              <p className={styles.price}>{product.price * product.quantity}</p>
+              <button onClick={() => deleteItem(product.title)}>Remove</button>
+            </div>
+          );
+        })}
+      </div>
 
       <h2>Total: $ {total}</h2>
-    </>
+    </div>
   ) : (
     <h2>No items yet</h2>
   );
