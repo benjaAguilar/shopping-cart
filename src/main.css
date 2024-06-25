@@ -1,0 +1,21 @@
+@font-face {
+    font-family: monserrat;
+    src: url('./assets/Montserrat-VariableFont_wght.ttf');
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: monserrat;
+    box-sizing: border-box;
+}
+
+img{
+    width: 200px;
+    aspect-ratio: 1;
+}
+
+body{
+    background-color: #e5e5e5;
+}
