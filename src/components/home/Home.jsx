@@ -37,13 +37,15 @@ function Home() {
   };
 
   function handleCart(product) {
-    const isOnCart = productsCart.filter(
-      (productOnCart) => productOnCart.title === product.title
-    );
+    if (productsCart.length !== 0) {
+      const isOnCart = productsCart.filter(
+        (productOnCart) => productOnCart.title === product.title
+      );
 
-    if (isOnCart.length !== 0) {
-      alert("already in cart");
-      return;
+      if (isOnCart.length !== 0) {
+        alert("already in cart");
+        return;
+      }
     }
 
     const prodStringed = JSON.stringify([...productsCart, product]);
