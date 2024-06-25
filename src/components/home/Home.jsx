@@ -37,7 +37,7 @@ function Home() {
   };
 
   function handleCart(product) {
-    if (productsCart.length !== 0) {
+    if (productsCart) {
       const isOnCart = productsCart.filter(
         (productOnCart) => productOnCart.title === product.title
       );
